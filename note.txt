@@ -1,0 +1,38 @@
+**String interpolation:
+<img src="{{imageLink}}" alt="{{name}}" />  // imageLink, name is variable
+
+**Property binding:
+<img [src]="imageLink" [alt]="name" />
+
+
+Case not use String interpolation:
+<button disabled="{{isDisabled}}"></button>  // isDisabled is variable
+=> wrong because angular mean boolean is String
+=> should use Property binding like this:
+<button [disabled]="isDisabled"></button>
+
+**Two way binding: give component a your application a way to share data,
+  use two-way binding to listen for event and update value simultaneously between parent and child component
+
+** Directive: are classes that add additional behavior to elements in your angular application
+   Use Angular built-in directives to manage form, list, styles, and what user see
+   - The dif type of angular directives:
+   + Components: used with template
+   + attribute directives: change the appearance or behavior of an elements, component, or another directive
+   + structure directives: change DOM by adding or remove DOM
+
+   - built-in attribute directives:
+   + ngClass
+   + ngStyle
+   + ngModel
+  - built-in structure directives:
+  + ngIf
+  + ngFor
+  + ngSwitch
+
+** Pipe: Pipes are simple function to use in a template expression to accept an input value and return a transformed value
+
+** Service: service is broad category encompassing any value, function, or feature that an application needs
+
+
+** Dependency injection: DI is wired into the Angular framework and used everywhere to provide new components with the service or other things they need
