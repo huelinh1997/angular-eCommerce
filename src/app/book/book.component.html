@@ -1,0 +1,14 @@
+<div class="book card h-full">
+  <div class="image flex justify-center bg-gray-100 pt-[28px] rounded-lg">
+    <img [alt]="book.title" [src]="book.image" width="200" class="h-[250px] object-contain" />
+  </div>
+  <div class="px-3 py-3">
+    <a href="#" class="title font-semibold truncate-text hover:text-amber-600">{{book.title}}
+      <span class="desctiption" *ngIf="book.description">: {{book.description}}</span>
+    </a>
+    <div class="author text-[14px] text-zinc-600" >by <span class="text-cyan-700">{{book.author}}</span></div>
+    <div class="price font-semibold">{{book.price | currency}} </div>
+    <button *ngIf="!isInCart" class="rounded-none text-xs bg-neutral-400 hover:bg-neutral-500 text-white px-2 py-1" (click)="handleAddToCart()">Add to cart</button>
+    <button *ngIf="isInCart" class="rounded-none text-xs bg-neutral-400 hover:bg-neutral-500 text-white px-2 py-1" (click)="handleRemoveFromCart()">Remove from cart</button>
+  </div>
+</div>

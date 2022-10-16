@@ -1,0 +1,13 @@
+<h2 class="title-cart text-lg font-semibold mt-4">Your cart</h2>
+<p *ngIf="!getCarts().length" class="no-cart">No items on your cart!</p>
+<div *ngIf="getCarts().length"  class="cart-list">
+  <div class="cart-item flex mt-2" *ngFor="let cart of getCarts()">
+    <div class="cart-image w-[50px] h-[50px] ng-gray-100 mr-3">
+      <img [src]="cart.image" [alt]="cart.title" width="50" class="object-contain h-[50px]">
+    </div>
+    <div>
+      <div class="cart-title font-semibold">{{cart.title}}</div>
+      <div class="cart-price">{{cart.price | currency}}</div>
+    </div>
+  </div>
+</div>
