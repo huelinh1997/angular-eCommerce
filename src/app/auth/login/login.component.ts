@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   form: FormLogin = {
     email: '',
-    password: '',
+    password: '', // pass: abc123
   };
 
   ngOnInit(): void {

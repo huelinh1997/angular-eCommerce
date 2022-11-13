@@ -1,11 +1,18 @@
 <nav class="flex bg-purple-900 justify-between p-4 text-white">
-  <div>
-    <a class="mx-4" routerLink="">Books shop</a>
-  </div>
+  <a class="flex justify-center items-center" routerLink="">
+    <mat-icon aria-hidden="false" aria-label="home" fontIcon="home"></mat-icon>
+    <span class="mx-2">Books shop</span>
+  </a>
   <div class="nav-right flex">
-    <div>
-      <a class="mx-4" routerLink="/cart">My cart</a>
-    </div>
+    <a class="flex justify-center items-center" routerLink="/cart" *ngIf="isAuthenticated()">
+      <div class="relative">
+        <span *ngIf="this.getCartQuantity()" class="quantity absolute -right-[12px] -top-[12px] w-[20px] h-[20px] rounded-full bg-red-800 text-white flex justify-center items-center">
+          {{this.getCartQuantity()}}
+        </span>
+        <mat-icon>add_shopping_cart</mat-icon>
+      </div>
+      <span class="mr-4 ml-2">My cart</span>
+    </a>
     <ng-container *ngIf="!isAuthenticated()">
       <div>
         <a class="mx-4" routerLink="/login">Log In</a>
@@ -14,11 +21,12 @@
         <a class="mx-4" routerLink="/register">Register</a>
       </div>
     </ng-container>
-    <div *ngIf="isAuthenticated()">
+    <div *ngIf="isAuthenticated()" class="flex justify-center items-center">
       <button class="mx-4" (click)="logout()">Logout</button>
     </div>
   </div>
 </nav>
 <div class="p-8">
   <router-outlet></router-outlet>
+  <lib-ng-toast></lib-ng-toast>
 </div>

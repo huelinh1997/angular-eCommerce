@@ -1,6 +1,7 @@
+import { CartsService } from './carts.service';
 import { Component, OnInit } from '@angular/core';
-import { CartServiceService } from '../services/cart-service.service';
-import { Book } from '../type';
+import { Cart } from '../type';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-carts',
@@ -8,12 +9,21 @@ import { Book } from '../type';
   styleUrls: ['./carts.component.scss'],
 })
 export class CartsComponent implements OnInit {
-  constructor(private cartService: CartServiceService) {
-    this.cartList = this.cartService.getCarts();
+  listCart: Cart[] = [];
+  constructor(
+    private cartService: CartsService,
+    private toast: NgToastService
+  ) {}
+
+  cartList: Cart[] = this.cartService.cartList;
+  async ngOnInit(): Promise<void> {
+    await this.cartService.getCarts();
+    this.listCart = this.cartService.cartList;
   }
-  getCarts() {
-    return this.cartService.getCarts();
+
+  handleUpdateCart(index: number, quantity: number): void {
+    this.listCart[index].quantity = quantity;
+    const cartUpdate = this.listCart[index];
+    this.cartService.updateCartItem(cartUpdate);
   }
-  cartList: Book[] = [];
-  ngOnInit(): void {}
 }

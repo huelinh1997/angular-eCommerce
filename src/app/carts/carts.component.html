@@ -1,13 +1,18 @@
 <h2 class="title-cart text-lg font-semibold mt-4">Your cart</h2>
-<p *ngIf="!getCarts().length" class="no-cart">No items on your cart!</p>
-<div *ngIf="getCarts().length"  class="cart-list">
-  <div class="cart-item flex mt-2" *ngFor="let cart of getCarts()">
-    <div class="cart-image w-[50px] h-[50px] ng-gray-100 mr-3">
-      <img [src]="cart.image" [alt]="cart.title" width="50" class="object-contain h-[50px]">
+<p *ngIf="!listCart.length" class="no-cart">No items on your cart!</p>
+<div *ngIf="listCart.length"  class="cart-list">
+  <div class="cart-item flex mt-2 items-center" *ngFor="let cart of listCart; let idx = index">
+    <div class="cart-image w-[70px] h-[70px] ng-gray-100 mr-3">
+      <img [src]="cart.image" [alt]="cart.title" width="70" class="object-contain h-[70px]">
     </div>
-    <div>
-      <div class="cart-title font-semibold">{{cart.title}}</div>
-      <div class="cart-price">{{cart.price | currency}}</div>
+    <div class="cart-title font-semibold ml-5 w-[300px] truncate-text">{{cart.title}}</div>
+    <div class="cart-price ml-5 w-[80px]">{{cart.price | currency}}</div>
+    <div class="flex items-center ml-20">
+      <button [disabled]="cart.quantity == 1 ? 'disabled': null" (click)="handleUpdateCart(idx, cart.quantity - 1)" [class.bg-slate-100]="cart.quantity == 1 ? 'disabled': null"  class="border border-solid border-gray flex items-center justify-center bg-white p-2 w-[30px] h-[30px]">-</button>
+        <span class="mx-2">{{cart.quantity}}</span>
+      <button (click)="handleUpdateCart(idx, cart.quantity + 1)" class="border border-solid border-gray flex items-center justify-center bg-white p-2 w-[30px] h-[30px]">+</button>
     </div>
+    <div class="cart-price ml-20">{{cart.price * cart.quantity | currency}}</div>
+    <!-- <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon> -->
   </div>
 </div>
